@@ -6,28 +6,28 @@
     display: initial;
 }
 
-body {
-    text-align: center;
-    background-color: #2A2F34;
-}
+/*body {*/
+/*    text-align: center;*/
+/*    background-color: #2A2F34;*/
+/*}*/
 
-nav {
-    text-align: left;
-}
+/*nav {*/
+/*    text-align: left;*/
+/*}*/
 
-.tableCSS {
-    margin: auto;
-    width: 80%;
-}
+/*.tableCSS {*/
+/*    margin: auto;*/
+/*    width: 80%;*/
+/*}*/
 
-.table th, .table td {
-    vertical-align: inherit;
-}
+/*.table th, .table td {*/
+/*    vertical-align: inherit;*/
+/*}*/
 
-.quote {
-    color: #FFFFFF;
-}
+/*.quote {*/
+/*    color: #FFFFFF;*/
+/*}*/
 
-.author {
-    color: #DFEBE8;
-}
+/*.author {*/
+/*    color: #DFEBE8;*/
+/*}*/
