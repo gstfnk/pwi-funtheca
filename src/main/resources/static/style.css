@@ -1,0 +1,33 @@
+.pageCSS {
+    display: none;
+}
+
+.activation {
+    display: initial;
+}
+
+body {
+    text-align: center;
+    background-color: #2A2F34;
+}
+
+nav {
+    text-align: left;
+}
+
+.tableCSS {
+    margin: auto;
+    width: 80%;
+}
+
+.table th, .table td {
+    vertical-align: inherit;
+}
+
+.quote {
+    color: #FFFFFF;
+}
+
+.author {
+    color: #DFEBE8;
+}
