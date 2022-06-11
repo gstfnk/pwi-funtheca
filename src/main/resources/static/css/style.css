@@ -1,0 +1,54 @@
+.pageCSS {
+    display: none;
+}
+
+.activation {
+    display: initial;
+}
+
+body {
+    text-align: center;
+    background-color: #2A2F34;
+}
+
+/*nav {*/
+/*    text-align: left;*/
+/*}*/
+
+.tableCSS {
+    margin: auto;
+    width: 80%;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.quote {
+    color: #FFFFFF;
+}
+
+.author {
+    color: #DFEBE8;
+}
+
+.flagLANG {
+    width: 18px;
+    height: 18px;
+    margin-bottom: 2px;
+}
+
+.btn-outline-danger {
+    color: deeppink !important;
+    border-color: deeppink !important;
+}
+
+.btn-outline-danger:hover, .btn-outline-danger:focus, .btn-outline-danger:active, .btn-outline-danger.active, .open > .dropdown-toggle.btn-outline-danger {
+    color: black !important;
+    background-color: deeppink !important;
+    border-color: deeppink !important; /*set the color you want here*/
+}
+
+.table-dark {
+    --bs-table-bg: pink !important;
+}

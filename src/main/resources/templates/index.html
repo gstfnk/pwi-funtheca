@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Zadanie 17.05</title>
+    <title>Project PwI</title>
     <link href="/webjars/bootstrap/5.1.3/css/bootstrap.css" rel="stylesheet"/>
-    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.4.5/css/flag-icons.min.css"
+          integrity="sha512-uvXdJud8WaOlQFjlz9B15Yy2Au/bMAvz79F7Xa6OakCl2jvQPdHD0hb3dEqZRdSwG4/sknePXlE7GiarwA/9Wg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-    <script src="../static/script.js" th:src="@{/script.js}"></script>
+    <script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" style="color: #17a2b8">PwI Library</a>
+        <a class="navbar-brand" style="color: #17a2b8">Funtheca</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,6 +48,24 @@
                         <li><a class="dropdown-item" href="https://github.com/gstfnk">Github</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink02" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Języki
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink02">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <img th:src="@{/img/flagPL2.png}" class="flagLANG" alt="Polish" src="">
+                                Polski</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <img th:src="@{/img/flagUK2.png}" class="flagLANG" alt="English" src="">
+                                Angielski</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -56,16 +77,17 @@
 
 <div class="pageCSS activation" id="bookList">
     <div class=".center-text">
-        <h1 class="display-4 mt-2" style="color: #DFEBE8">Lista książek:</h1>
-        <button type="button" class="btn btn-outline-info mt-2 mb-3" data-toggle="modal" data-target="#addModal">
+        <h1 class="display-4 mt-2" style="color: #DFEBE8">Podziel się swoją ulubioną książką!</h1>
+        <a role="button" href="#" class="btn btn-outline-info mt-2 mb-3" data-bs-toggle="modal"
+           data-bs-target="#addModal">
             Dodaj książkę
-        </button>
+        </a>
     </div>
 
     <table class="tableCSS table table-hover table-dark">
         <thead>
         <tr>
-            <th scope="col">ID</th>
+            <th scope="col"></th>
             <th scope="col">Tytuł</th>
             <th scope="col">Autor</th>
             <th scope="col">Usuń</th>
@@ -76,27 +98,26 @@
             <th scope="row" th:text="${counter.incrementAndGet()}">Id</th>
             <td th:text="${book.title}">Tytuł</td>
             <td th:text="${book.author}">Autor</td>
-            <td><a th:href="@{/books/delete/(Id=${book.Id})}" class="btn btn-outline-danger"
-                   id="deleteButton">Delete</a></td>
+            <td><a th:href="@{/books/delete/(Id=${book.Id})}" href="#" class="btn btn-outline-danger"
+                   id="deleteButton" data-bs-target="#deleteModal" role="button" data-bs-toggle="modal">Delete</a></td>
         </tr>
         </tbody>
     </table>
 
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModal"
+         aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <form th:action="@{/books/addNew}" method="post">
             <div class="modal-dialog" role="document">
                 <div class="modal-content bg-dark">
                     <div class="modal-header">
                         <h5 class="modal-title text-light" id="exampleModalLabel">Nowa książka</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="text-light">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                     </div>
                     <div class="modal-body mt-2">
                         <form>
                             <div class="form-group">
-                                <input type="text" required="required" class="form-control bg-dark text-light"
+                                <input type="text" required="required" class="form-control bg-dark text-light mb-3"
                                        name="title" placeholder="Tytuł">
                             </div>
                             <div class="form-group">
@@ -106,7 +127,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Zamknij</button>
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Zamknij</button>
                         <button type="submit" class="btn btn-outline-info">Zapisz</button>
                     </div>
                 </div>
@@ -114,21 +135,21 @@
         </form>
     </div>
 
-    <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal"
+         aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
             <div class="modal-content bg-dark">
                 <div class="modal-header">
                     <h5 class="modal-title text-light">Potwierdź usunięcie</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-light">
                     <p style="margin: auto">Na pewno chcesz usunąć książkę?</p>
                 </div>
                 <div class="modal-footer">
                     <a href="" class="btn btn-outline-danger" id="delRef">Usuń</a>
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Zamknij</button>
                 </div>
             </div>
         </div>
@@ -136,45 +157,14 @@
 </div>
 
 <div class="pageCSS" id="quote">
-    <div class="mt-5">
-        <blockquote class="blockquote text-center">
-            <p class="mb-0 quote">Lepiej zaliczać się do niektórych, niż do wszystkich.</p>
-            <footer class="blockquote-footer author">Andrzej Sapkowski, <cite title="Source Title">Krew elfów</cite>
-            </footer>
+    <figure class="text-center mt-5">
+        <blockquote class="blockquote quote">
+            <p>Kocha się za nic. Nie istnieje żaden powód do miłości.</p>
         </blockquote>
-    </div>
-    <div class="mt-5">
-        <blockquote class="blockquote text-center">
-            <p class="mb-0 quote">Czytanie książek to najpiękniejsza zabawa, jaką sobie ludzkość wymyśliła</p>
-            <footer class="blockquote-footer author">Wisława Szymborska</footer>
-        </blockquote>
-    </div>
-    <div class="mt-5">
-        <blockquote class="blockquote text-center">
-            <p class="mb-0 quote">Dobrze widzi się tylko sercem. Najważniejsze jest niewidoczne dla oczu</p>
-            <footer class="blockquote-footer author">Antoine de Saint-Exupéry, <cite title="Source Title">Mały
-                Książę</cite></footer>
-        </blockquote>
-    </div>
-    <div class="mt-5">
-        <blockquote class="blockquote text-center">
-            <p class="mb-0 quote">
-                Żaden dzień się nie powtórzy,
-                nie ma dwóch podobnych nocy,
-                dwóch tych samych pocałunków,
-                dwóch jednakich spojrzeń w oczy.
-            </p>
-            <footer class="blockquote-footer author">Wisława Szymborska, <cite title="Source Title">Nic dwa razy</cite>
-            </footer>
-        </blockquote>
-    </div>
-    <div class="mt-5">
-        <blockquote class="blockquote text-center">
-            <p class="mb-0 quote">
-                Kocha się za nic. Nie istnieje żaden powód do miłości.</p>
-            <footer class="blockquote-footer author">Paulo Coelho, <cite title="Source Title">Alchemik</cite></footer>
-        </blockquote>
-    </div>
+        <figcaption class="blockquote-footer author">
+            Paulo Coelho, <cite title="Source Title">Alchemik</cite>
+        </figcaption>
+    </figure>
 </div>
 
 </body>
