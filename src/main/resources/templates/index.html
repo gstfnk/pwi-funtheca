@@ -6,17 +6,20 @@
     <title>Project PwI</title>
     <link href="/webjars/bootstrap/5.1.3/css/bootstrap.css" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/memoryGame.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.4.5/css/flag-icons.min.css"
           integrity="sha512-uvXdJud8WaOlQFjlz9B15Yy2Au/bMAvz79F7Xa6OakCl2jvQPdHD0hb3dEqZRdSwG4/sknePXlE7GiarwA/9Wg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     <script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+    <script src="../static/js/langs.js" th:src="@{/js/langs.js}"></script>
+    <script src="../static/js/memoryGame.js" th:src="@{/js/memoryGame.js}"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" style="color: #17a2b8">Funtheca</a>
+        <a class="navbar-brand spa-link" href="#" data-target="mainPage" style="color: #17a2b8">Funtheca</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,13 +27,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link active spa-link" href="#" data-target="bookList">Spis książek</a>
+                    <a class="nav-link active spa-link bookListLANG" href="#" data-target="bookList">Spis książek</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active spa-link" href="#" data-target="quote">Cytat</a>
+                    <a class="nav-link active spa-link quoteLANG" href="#" data-target="quote">Cytat</a>
+                </li>
+                <li>
+                    <a class="nav-link active spa-link playMemoryLANG" href="#" data-target="memoryGame">Zagraj w
+                        memory!</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink01" role="button"
+                    <a class="nav-link dropdown-toggle techLANG" href="#" id="navbarDropdownMenuLink01" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         Technologie
                     </a>
@@ -49,18 +56,18 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink02" role="button"
+                    <a class="nav-link dropdown-toggle langsLANG" href="#" id="navbarDropdownMenuLink02" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         Języki
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink02">
+                    <ul class="dropdown-menu dropdown-menu-dark langWrap" aria-labelledby="navbarDropdownMenuLink02">
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item activeLang langProp plLANG" href="#" language="polish">
                                 <img th:src="@{/img/flagPL2.png}" class="flagLANG" alt="Polish" src="">
                                 Polski</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item langProp enLANG" href="#" language="english">
                                 <img th:src="@{/img/flagUK2.png}" class="flagLANG" alt="English" src="">
                                 Angielski</a>
                         </li>
@@ -77,8 +84,8 @@
 
 <div class="pageCSS activation" id="bookList">
     <div class=".center-text">
-        <h1 class="display-4 mt-2" style="color: #DFEBE8">Podziel się swoją ulubioną książką!</h1>
-        <a role="button" href="#" class="btn btn-outline-info mt-2 mb-3" data-bs-toggle="modal"
+        <h1 class="display-4 mt-2 shareBookLANG" style="color: #DFEBE8">Podziel się swoją ulubioną książką!</h1>
+        <a role="button" href="#" class="btn btn-outline-info mt-2 mb-3 addBookLANG" data-bs-toggle="modal"
            data-bs-target="#addModal">
             Dodaj książkę
         </a>
@@ -88,9 +95,9 @@
         <thead>
         <tr>
             <th scope="col"></th>
-            <th scope="col">Tytuł</th>
-            <th scope="col">Autor</th>
-            <th scope="col">Usuń</th>
+            <th scope="col" class="titleLANG">Tytuł</th>
+            <th scope="col" class="authorLANG">Autor</th>
+            <th scope="col" class="deleteLANG">Usuń</th>
         </tr>
         </thead>
         <tbody>
@@ -99,7 +106,7 @@
             <td th:text="${book.title}">Tytuł</td>
             <td th:text="${book.author}">Autor</td>
             <td><a th:href="@{/books/delete/(Id=${book.Id})}" href="#" class="btn btn-outline-danger"
-                   id="deleteButton" data-bs-target="#deleteModal" role="button" data-bs-toggle="modal">Delete</a></td>
+                   id="deleteButton" data-bs-target="#deleteModal" role="button" data-bs-toggle="modal">X</a></td>
         </tr>
         </tbody>
     </table>
@@ -110,25 +117,28 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content bg-dark">
                     <div class="modal-header">
-                        <h5 class="modal-title text-light" id="exampleModalLabel">Nowa książka</h5>
+                        <h5 class="modal-title text-light newBookLANG" id="exampleModalLabel">Nowa książka</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                     </div>
                     <div class="modal-body mt-2">
                         <form>
                             <div class="form-group">
-                                <input type="text" required="required" class="form-control bg-dark text-light mb-3"
+                                <input type="text" required="required"
+                                       class="form-control bg-dark text-light mb-3 titlePlaceholderLANG"
                                        name="title" placeholder="Tytuł">
                             </div>
                             <div class="form-group">
-                                <input type="text" required="required" class="form-control bg-dark text-light"
+                                <input type="text" required="required"
+                                       class="form-control bg-dark text-light authorPlaceholderLANG"
                                        name="author" placeholder="Autor">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Zamknij</button>
-                        <button type="submit" class="btn btn-outline-info">Zapisz</button>
+                        <button type="button" class="btn btn-outline-danger exitLANG" data-bs-dismiss="modal">Zamknij
+                        </button>
+                        <button type="submit" class="btn btn-outline-info saveLANG">Zapisz</button>
                     </div>
                 </div>
             </div>
@@ -140,16 +150,17 @@
         <div class="modal-dialog">
             <div class="modal-content bg-dark">
                 <div class="modal-header">
-                    <h5 class="modal-title text-light">Potwierdź usunięcie</h5>
+                    <h5 class="modal-title text-light confirmDeleteLANG">Potwierdź usunięcie</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-light">
-                    <p style="margin: auto">Na pewno chcesz usunąć książkę?</p>
+                    <p style="margin: auto" class="questionDeleteLANG">Na pewno chcesz usunąć książkę?</p>
                 </div>
                 <div class="modal-footer">
-                    <a href="" class="btn btn-outline-danger" id="delRef">Usuń</a>
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Zamknij</button>
+                    <a href="" class="btn btn-outline-danger deleteLANG2" id="delRef">Usuń</a>
+                    <button type="button" class="btn btn-outline-secondary exitLANG2" data-bs-dismiss="modal">Zamknij
+                    </button>
                 </div>
             </div>
         </div>
@@ -167,5 +178,83 @@
     </figure>
 </div>
 
+<div class="pageCSS" id="memoryGame">
+    <div class="game-container">
+        <div class="game-element" data-language="java">
+            <img class="exposed-memory"
+                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg"
+                 alt="Java"/>
+            <img class="hidden-memory" th:src="@{/img/m.svg}" alt="M"/>
+        </div>
+        <div class="game-element" data-language="java">
+            <img class="exposed-memory"
+                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg"
+                 alt="Java"/>
+            <img class="hidden-memory" th:src="@{/img/m.svg}" alt="M"/>
+        </div>
+        <div class="game-element" data-language="python">
+            <img class="exposed-memory"
+                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                 alt="Python"/>
+            <img class="hidden-memory" th:src="@{/img/m.svg}" alt="M"/>
+        </div>
+        <div class="game-element" data-language="python">
+            <img class="exposed-memory"
+                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                 alt="Python"/>
+            <img class="hidden-memory" th:src="@{/img/m.svg}" alt="M"/>
+        </div>
+        <div class="game-element" data-language="ts">
+            <img class="exposed-memory"
+                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TS"/>
+            <img class="hidden-memory" th:src="@{/img/m.svg}" alt="M"/>
+        </div>
+        <div class="game-element" data-language="ts">
+            <img class="exposed-memory"
+                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TS"/>
+            <img class="hidden-memory" th:src="@{/img/m.svg}" alt="M"/>
+        </div>
+        <div class="game-element" data-language="csharp">
+            <img class="exposed-memory"
+                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg"
+                 alt="Csharp"/>
+            <img class="hidden-memory" th:src="@{/img/m.svg}" alt="M"/>
+        </div>
+        <div class="game-element" data-language="csharp">
+            <img class="exposed-memory"
+                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg"
+                 alt="Csharp"/>
+            <img class="hidden-memory" th:src="@{/img/m.svg}" alt="M"/>
+        </div>
+        <div class="game-element" data-language="ruby">
+            <img class="exposed-memory"
+                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-plain-wordmark.svg"
+                 alt="Ruby"/>
+            <img class="hidden-memory" th:src="@{/img/m.svg}" alt="M"/>
+        </div>
+        <div class="game-element" data-language="ruby">
+            <img class="exposed-memory"
+                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-plain-wordmark.svg"
+                 alt="Ruby"/>
+            <img class="hidden-memory" th:src="@{/img/m.svg}" alt="M"/>
+        </div>
+        <div class="game-element" data-language="js">
+            <img class="exposed-memory"
+                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                 alt="JavaScript"/>
+            <img class="hidden-memory" th:src="@{/img/m.svg}" alt="M"/>
+        </div>
+        <div class="game-element" data-language="js">
+            <img class="exposed-memory"
+                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                 alt="JavaScript"/>
+            <img class="hidden-memory" th:src="@{/img/m.svg}" alt="M"/>
+        </div>
+    </div>
+</div>
+
+<div class="pageCSS" id="mainPage">
+    <h1>Tu będzie strona główna</h1>>
+</div>
 </body>
 </html>

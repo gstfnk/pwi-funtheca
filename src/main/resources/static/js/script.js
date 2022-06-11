@@ -16,10 +16,8 @@ const app = {
 
         document.querySelectorAll('.spa-link').forEach((link) => {
             link.addEventListener('click', app.nav);
+            history.replaceState({}, 'BookList', '#bookList');
         })
-
-        history.replaceState({}, 'BookList', '#bookList');
-        window.addEventListener('popstate', app.poppin);
     },
     nav: function (ev) {
         ev.preventDefault();
@@ -28,14 +26,6 @@ const app = {
         document.getElementById(currentPage).classList.add('activation');
         history.pushState({}, currentPage, `#${currentPage}`);
         document.getElementById(currentPage).dispatchEvent(app.show);
-    },
-    poppin: function () {
-        console.log(location.hash, 'popstate event');
-        let hash = location.hash.replace('#', '');
-        document.querySelector('.activation').classList.remove('activation');
-        document.getElementById(hash).classList.add('activation');
-        console.log(hash)
-        document.getElementById(hash).dispatchEvent(app.show);
     }
 }
 
