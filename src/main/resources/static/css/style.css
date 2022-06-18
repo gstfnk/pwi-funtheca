@@ -53,6 +53,10 @@ body {
     --bs-table-bg: pink !important;
 }
 
+.bg-dark {
+    background-color: deeppink !important;
+}
+
 @media screen and (max-width: 641px) {
     body {
         width: fit-content;

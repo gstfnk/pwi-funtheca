@@ -36,7 +36,7 @@
     border-color: #8254ff;
     background: #488FB1;
     backface-visibility: hidden;
-
+    object-fit: contain;
 }
 
 .exposed-memory {
