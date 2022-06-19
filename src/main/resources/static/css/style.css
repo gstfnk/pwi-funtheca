@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 .pageCSS {
     display: none;
 }
@@ -8,7 +10,8 @@
 
 body {
     /*text-align: center;*/
-    background-color: #2A2F34;
+    background-color: #3a1295;
+    color: #deec7e;
 }
 
 /*nav {*/
@@ -22,6 +25,15 @@ body {
 
 .table th, .table td {
     vertical-align: middle;
+    border-style: hidden;
+}
+
+.table th {
+
+}
+
+.lobster {
+    font-family: 'Lobster', cursive !important;
 }
 
 .quote {
@@ -50,11 +62,21 @@ body {
 }
 
 .table-dark {
-    --bs-table-bg: pink !important;
+    --bs-table-bg: #2d087f !important;
+    color: #e7f6a8;
+}
+
+.table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: #280870 !important;
+    color: #e7f6a8 !important;
 }
 
 .bg-dark {
-    background-color: deeppink !important;
+    background-color: #2d087f !important;
+}
+
+.dropdown-menu-dark {
+    background-color: #2d087f !important;
 }
 
 @media screen and (max-width: 641px) {
@@ -62,3 +84,13 @@ body {
         width: fit-content;
     }
 }
+
+.bookListCSS {
+    text-align: center;
+}
+
+.shareBookLANGdesc {
+    width: 70%;
+    margin: auto;
+}
+
