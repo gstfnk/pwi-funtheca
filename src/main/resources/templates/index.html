@@ -16,6 +16,7 @@
     <script src="../static/js/spa.js" th:src="@{/js/spa.js}"></script>
     <script src="../static/js/langs.js" th:src="@{/js/langs.js}"></script>
     <script src="../static/js/memoryGame.js" th:src="@{/js/memoryGame.js}"></script>
+    <script src="../static/js/quotesRandom.js" th:src="@{/js/quotesRandom.js}"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -178,8 +179,8 @@
         <blockquote class="blockquote quote">
             <p id="quoteRandom">Kocha się za nic. Nie istnieje żaden powód do miłości.</p>
         </blockquote>
-        <figcaption id="authorRandom" class="blockquote-footer author">
-            Paulo Coelho, <cite title="Source Title">Alchemik</cite>
+        <figcaption class="blockquote-footer author">
+            <a id="authorRandom">Paulo Coelho</a>, <cite id="citeRandom" title="Source Title">Alchemik</cite>
         </figcaption>
     </figure>
 </div>
