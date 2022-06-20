@@ -90,7 +90,8 @@
 <div class="pageCSS bookListCSS" id="bookList">
     <div class=".center-text">
         <h1 class="display-4 mt-2 shareBookLANG lobster" style="color: #DFEBE8">Podziel się swoją ulubioną książką!</h1>
-        <h4 class="display-6 fs-4 mt-2 mb-3 shareBookLANGdesc" >Dzielenie się tym co pozytywne jest fajne, więc podziel się tym, co ostatnio wpadło
+        <h4 class="display-6 fs-4 mt-2 mb-3 shareBookLANGdesc">Dzielenie się tym co pozytywne jest fajne, więc podziel
+            się tym, co ostatnio wpadło
             Ci w oko ze świata magicznej książki :)</h4>
         <a role="button" href="#" class="btn btn-outline-info mt-2 mb-4 addBookLANG" data-bs-toggle="modal"
            data-bs-target="#addModal">
@@ -104,7 +105,7 @@
             <th scope="col"></th>
             <th scope="col" class="titleLANG">Tytuł</th>
             <th scope="col" class="authorLANG">Autor</th>
-            <th scope="col" class="deleteLANG" >Usuń</th>
+            <th scope="col" class="deleteLANG">Usuń</th>
         </tr>
         </thead>
         <tbody>
@@ -174,18 +175,18 @@
     </div>
 </div>
 
-<div class="pageCSS" id="quote">
-    <figure class="text-center mt-5">
-        <blockquote class="blockquote quote">
+<div class="pageCSS" id="quote" style="text-align: -webkit-center;">
+    <figure class="text-center mt-5" style="width: 60%;">
+        <blockquote class="blockquote quote fs-4 varela">
             <p id="quoteRandom">Kocha się za nic. Nie istnieje żaden powód do miłości.</p>
         </blockquote>
-        <figcaption class="blockquote-footer author">
+        <figcaption class="fs-5 blockquote-footer author varela" style="color: #deec7e;">
             <a id="authorRandom">Paulo Coelho</a>, <cite id="citeRandom" title="Source Title">Alchemik</cite>
         </figcaption>
     </figure>
 </div>
 
-<div class="pageCSS" id="memoryGame">
+<div class="pageCSS memoryMedia" id="memoryGame">
     <h1 class="lobster bookListCSS display-3" style="color: #DFEBE8">Memory Game</h1>
     <div class="game-container">
         <div class="game-element" data-language="java">
@@ -264,7 +265,29 @@
 </div>
 
 <div class="pageCSS activation" id="mainPage">
-    <h1>Tu będzie strona główna</h1>>
+    <div class="mainPageFuntheca mb-4">
+        <img class="mainPageFunthecaIMG" th:src="@{/img/logo.png}" alt=""/>
+        <h1 class="display-4 mt-2 shareBookLANG lobster" style="color: #69edff">Funtheca</h1>
+    </div>
+    <div class="container center-text bookListCSS">
+        <div class="row align-items-center">
+            <div class="col">
+                <h1 class="lobster mb-3" style="color: aliceblue">Spis książek</h1>
+                <p class="varela">Czujesz dreszcze po przeczytaniu książki? Albo może któraś z nich sprawiła uśmiech na
+                    Twojej twarzy?
+                    Podziel się tytułem i jej autorem w naszym spisie książek!</p>
+            </div>
+            <div class="col">
+                <h1 class="lobster mb-3" style="color: aliceblue">Cytat</h1>
+                <p class="varela">Klikając w przycisk "Cytat" umieszczony na górnym pasku strony masz szansę wylosować
+                    inną sentencję, sprawdź, czy przeczytasz coś dla siebie!</p>
+            </div>
+            <div class="col">
+                <h1 class="lobster mb-3" style="color: aliceblue">Memory</h1>
+                <p class="varela">Sprawdź siebie i swoją pamięć w prostej grze, jaką przygotowała Ci nasza strona!</p>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
