@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cousine&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 .pageCSS {
     display: none;
@@ -29,7 +32,13 @@ body {
 }
 
 .table th {
+    font-size: calc(1rem + 0.6vw);
+    font-family: 'Montserrat Alternates', sans-serif;
+}
 
+.table td {
+    color: #FFFFFF;
+    font-family: 'Cousine', monospace;
 }
 
 .lobster {
@@ -50,15 +59,47 @@ body {
     margin-bottom: 2px;
 }
 
+.funtheca {
+    vertical-align: inherit;
+}
+
+.modal-header {
+    border-bottom: 0 none;
+}
+
+.modal-footer {
+    border-top: 0 none;
+}
+
 .btn-outline-danger {
     color: deeppink !important;
     border-color: deeppink !important;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.varela {
+    font-family: 'Varela Round', sans-serif;
+}
+
+.btn-outline-info {
+    font-family: 'Varela Round', sans-serif;
+}
+.btn-outline-secondary {
+    font-family: 'Varela Round', sans-serif;
+}
+
+.navbar-collapse {
+    font-family: 'Varela Round', sans-serif !important;
 }
 
 .btn-outline-danger:hover, .btn-outline-danger:focus, .btn-outline-danger:active, .btn-outline-danger.active, .open > .dropdown-toggle.btn-outline-danger {
     color: black !important;
     background-color: deeppink !important;
-    border-color: deeppink !important; /*set the color you want here*/
+    border-color: deeppink !important;
+}
+
+.btn-outline-secondary:hover, .btn-outline-secondary:focus, .btn-outline-secondary:active, .btn-outline-secondary.active, .open > .dropdown-toggle.btn-outline-secondary {
+    color: black !important;
 }
 
 .table-dark {
@@ -68,7 +109,7 @@ body {
 
 .table-hover > tbody > tr:hover > * {
     --bs-table-accent-bg: #280870 !important;
-    color: #e7f6a8 !important;
+    color: #69edff !important;
 }
 
 .bg-dark {
